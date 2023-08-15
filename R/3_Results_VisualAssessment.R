@@ -7,7 +7,7 @@ if (!exists("pipelineList"))
     stop("PipelineList object not found => execute script #1 first!")
 
 
-# USE CASE #1
+# USE CASE #1 - Figure 3 in Article
 
 
 CytoPipeline::plotCytoPipelineProcessingQueue(
@@ -19,7 +19,7 @@ CytoPipeline::plotCytoPipelineProcessingQueue(
 )
     
 
-# USE CASE #2
+# USE CASE #2 - Figure 4
 
 selectedExpName <- "HBVMouse_PQC"
 selectedSampleFile <- file.path(
@@ -54,7 +54,7 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
 
 p1+p2
 
-# USE CASE #3
+# USE CASE #3 - Figure 5
 
 selectedExpName1 <- "HBVMouse_PQC_nC3"
 selectedExpName2 <- "HBVMouse_PQC"
@@ -109,7 +109,7 @@ p3 <- CytoPipelineGUI:::plotDiffFlowFrame(
 
 p1+p2+p3
 
-# USE CASE #4
+# USE CASE #4 - Figure 6
 
 selectedExpName1 <- "HBVMouse_PQC"
 selectedExpName2 <- "HBVMouse_flowAI"
@@ -164,7 +164,7 @@ p3 <- CytoPipelineGUI:::plotDiffFlowFrame(
 
 p1+p2+p3
 
-# USE CASE #5
+# USE CASE #5 - Figure 7
 
 selectedExpName <- "HBVMouse_PQC"
 selectedSampleFile1 <- file.path(
@@ -202,5 +202,5 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
 
 p1+p2
 
-# USE CASE #6
+# USE CASE #6 - Figure 8
 CytoPipelineGUI::ScaleTransformApp()

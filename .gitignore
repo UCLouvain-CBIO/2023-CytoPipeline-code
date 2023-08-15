@@ -6,4 +6,5 @@
 *.Rproj
 rawData
 HBVMouse*
-
+BPlog*
+pipeComp*
