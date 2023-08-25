@@ -1,0 +1,130 @@
+{
+  "flowFramesPreProcessingSteps": [
+    {
+      "name": ["flowframe_read"],
+      "FUN": ["readSampleFiles"],
+      "ARGS": {
+        "truncate_max_range": [false],
+        "min.limit": null
+      }
+    },
+    {
+      "name": ["remove_margins"],
+      "FUN": ["removeMarginsPeacoQC"],
+      "ARGS": {
+        "channelSpecifications": {
+          "AllFluoChannels": [-300, 262144]
+        }
+      }
+    },
+    {
+      "name": ["perform_QC"],
+      "FUN": ["qualityControlFlowAI"],
+      "ARGS": {		  
+        "preTransform": [false],
+        "remove_from": ["all"],
+        "second_fractionFR": [0.1],
+        "deviationFR": ["MAD"],
+        "alphaFR": [0.01],
+        "decompFR": [true],
+        "outlier_binsFS": [false],
+        "pen_valueFS": [500],
+        "max_cptFS": [3],
+		"sideFM": ["both"],
+		"neg_valuesFM": [1]
+      }
+    },
+    {
+      "name": ["compensate"],
+      "FUN": ["compensateFromMatrix"],
+      "ARGS": {
+        "matrixSource": ["pData"],
+        "pDataVar" : ["day"],
+        "pDataPathMapping" : {
+            "D91" : ["./compensation/Compensations Liver D91.csv"],
+            "D93" : ["./compensation/Compensations Liver D93.csv"]
+        }
+      }
+    },
+    {
+      "name": ["remove_doublets"],
+      "FUN": ["removeDoubletsCytoPipeline"],
+      "ARGS": {
+        "areaChannels": ["FSC-A"],
+        "heightChannels": ["FSC-H"],
+        "nmads": [3]
+      }
+    },
+    {
+      "name": ["remove_debris"],
+      "FUN": ["removeDebrisFlowClustTmix"],
+      "ARGS": {
+        "FSCChannel": ["FSC-A"],
+        "SSCChannel": ["SSC-A"],
+        "nClust": [2],
+        "level": [0.97],
+        "B": [100],
+        "verbose": [true]
+      }
+    },
+    {
+      "name": ["remove_dead_cells"],
+      "FUN": ["removeDeadCellsDeGate"],
+      "ARGS": {
+		"preTransform": [true],
+        "LDMarker": ["Live & Dead"]
+      }
+    }
+  ],
+  "scaleTransformProcessingSteps": [
+  	{
+      "name": ["flowframe_read"],
+      "FUN": ["readSampleFiles"],
+      "ARGS": {
+        "whichSamples": ["random"],
+        "nSamples": [4],
+		"seed": [0],
+        "truncate_max_range": [false],
+        "min.limit": null
+      }
+    },
+    {
+      "name": ["remove_margins"],
+      "FUN": ["removeMarginsPeacoQC"],
+      "ARGS": {
+        "channelSpecifications": {
+          "AllFluoChannels": [-300, 262144]
+        }
+      }
+    },
+    {
+      "name": ["compensate"],
+      "FUN": ["compensateFromMatrix"],
+      "ARGS": {
+        "matrixSource": ["pData"],
+        "pDataVar" : ["day"],
+        "pDataPathMapping" : {
+            "D91" : ["./compensation/Compensations Liver D91.csv"],
+            "D93" : ["./compensation/Compensations Liver D93.csv"]
+        }
+      }
+    },
+    {
+      "name": ["flowframe_aggregate"],
+      "FUN": ["aggregateAndSample"],
+      "ARGS": {
+        "nTotalEvents": [10000],
+        "seed": [0]
+      }
+    },
+    {
+      "name": ["scale_transform_estimate"],
+      "FUN": ["estimateScaleTransforms"],
+      "ARGS": {
+        "fluoMethod": ["estimateLogicle"],
+        "scatterMethod": ["linearQuantile"],
+        "scatterRefMarker": ["CD4"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "flowFramesPreProcessingSteps": [
+    {
+      "name": ["flowframe_read"],
+      "FUN": ["readSampleFiles"],
+      "ARGS": {
+        "truncate_max_range": [true],
+        "min.limit": null
+      }
+    },
+    {
+      "name": ["compensate"],
+      "FUN": ["compensateFromMatrix"],
+      "ARGS": {
+        "matrixSource": ["pData"],
+        "pDataVar" : ["day"],
+        "pDataPathMapping" : {
+            "D91" : ["./compensation/Compensations Liver D91.csv"],
+            "D93" : ["./compensation/Compensations Liver D93.csv"]
+        }
+      }
+    },
+	{
+      "name": ["time_gate"],
+      "FUN": ["applyFlowJoGate"],
+      "ARGS": {
+        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "gateName": ["Time"]
+          
+      }
+    },
+    {
+      "name": ["single_cells_gate"],
+      "FUN": ["applyFlowJoGate"],
+      "ARGS": {
+        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "gateName": ["Single Cells"]
+          
+      }
+    },
+    {
+      "name": ["live_cells_gate"],
+      "FUN": ["applyFlowJoGate"],
+      "ARGS": {
+        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "gateName": ["Live Cells"]
+          
+      }
+    },
+    {
+      "name": ["lymphocytes_gate"],
+      "FUN": ["applyFlowJoGate"],
+      "ARGS": {
+        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "gateName": ["Lymphocytes"]
+          
+      }
+    }
+  ],
+  "scaleTransformProcessingSteps": [
+    {
+      "name": ["flowframe_read"],
+      "FUN": ["readSampleFiles"],
+      "ARGS": {
+        "whichSamples": ["random"],
+        "nSamples": [4],
+		"seed": [0],
+        "truncate_max_range": [false],
+        "min.limit": null
+      }
+    },
+    {
+      "name": ["remove_margins"],
+      "FUN": ["removeMarginsPeacoQC"],
+      "ARGS": {
+        "channelSpecifications": {
+          "AllFluoChannels": [-300, 262144]
+        }
+      }
+    },
+    {
+      "name": ["compensate"],
+      "FUN": ["compensateFromMatrix"],
+      "ARGS": {
+        "matrixSource": ["pData"],
+        "pDataVar" : ["day"],
+        "pDataPathMapping" : {
+            "D91" : ["./compensation/Compensations Liver D91.csv"],
+            "D93" : ["./compensation/Compensations Liver D93.csv"]
+        }
+      }
+    },
+    {
+      "name": ["flowframe_aggregate"],
+      "FUN": ["aggregateAndSample"],
+      "ARGS": {
+        "nTotalEvents": [10000],
+        "seed": [0]
+      }
+    },
+    {
+      "name": ["scale_transform_estimate"],
+      "FUN": ["estimateScaleTransforms"],
+      "ARGS": {
+        "fluoMethod": ["estimateLogicle"],
+        "scatterMethod": ["linearQuantile"],
+        "scatterRefMarker": ["CD4"]
+      }
+    }
+  ]
+}
