@@ -15,7 +15,7 @@ CytoPipeline::plotCytoPipelineProcessingQueue(
     whichQueue = "pre-processing",
     sampleFile = 1,
     path = outputDir,
-    title = ""
+    title = FALSE
 )
     
 

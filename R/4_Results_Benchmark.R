@@ -331,12 +331,5 @@ p3 <- CytoPipelineGUI:::plotDiffFlowFrame(
 
 p1+p2+p3
 
-pipL <- CytoPipeline::buildCytoPipelineFromCache("HBVMouse_FJ", path = resultsDir)
-CytoPipeline::plotCytoPipelineProcessingQueue(pipL, 
-                                              sampleFile = selectedSampleFile)
-
-ff <- readSampleFiles(selectedSampleFile, 
-                      truncate_max_range = TRUE,
-                      min.limit = NULL)
 
 
