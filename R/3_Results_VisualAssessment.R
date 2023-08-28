@@ -2,18 +2,24 @@ require(CytoPipeline)
 require(CytoPipelineGUI)
 require(patchwork)
 
-
-if (!exists("pipelineList"))
-    stop("PipelineList object not found => execute script #1 first!")
-
+rawDataDir <- "./rawData"
+outputDir <- "."
 
 # USE CASE #1 - Figure 3 in Article
 
+selectedSampleFile <- file.path(
+    rawDataDir,
+    "D91_G01.fcs")
+selectedExpName <- "HBVMouse_PQC"
+
+selectedPipL <- CytoPipeline::buildCytoPipelineFromCache(
+    experimentName = selectedExpName
+)
 
 CytoPipeline::plotCytoPipelineProcessingQueue(
-    x <- pipelineList[[1]],
+    x = selectedPipL,
     whichQueue = "pre-processing",
-    sampleFile = 1,
+    sampleFile = selectedSampleFile,
     path = outputDir,
     title = FALSE
 )
@@ -53,6 +59,8 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
     linearRange = c(-100, 262144))
 
 p1+p2
+
+CytoPipelineGUI::CytoPipelineCheckApp()
 
 # USE CASE #3 - Figure 5
 
@@ -202,5 +210,43 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
 
 p1+p2
 
-# USE CASE #6 - Figure 8
-CytoPipelineGUI::ScaleTransformApp()
+# USE CASE #6 - Figure 9
+
+selectedExpName <- "HBVMouse_PQC"
+selectedSampleFile <- file.path(
+    rawDataDir,
+    "D91_G01.fcs")
+
+pipL <- CytoPipeline::buildCytoPipelineFromCache(
+    experimentName = selectedExpName,
+    path = outputDir)
+
+ff <- CytoPipeline::getCytoPipelineFlowFrame(
+    pipL, path = outputDir, 
+    whichQueue = "scale transform",
+    sampleFile = selectedSampleFile,
+    object = "flowframe_aggregate_obj")
+
+pGood <- plotScaleTransformedChannel(
+    ff,
+    channel = "CD38",
+    applyTransform = "axis scale only",
+    transfoType = "logicle",
+    negDecades = 0.,
+    width = 0.5,
+    posDecades = 4)
+
+pBad <- plotScaleTransformedChannel(
+    ff,
+    channel = "CD38",
+    applyTransform = "axis scale only",
+    transfoType = "logicle",
+    negDecades = 0.,
+    width = 0.5,
+    posDecades = 5)
+
+pBad + pGood
+
+
+#CytoPipelineGUI::ScaleTransformApp()
+

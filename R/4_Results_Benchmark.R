@@ -14,7 +14,7 @@ res <- readRDS(file = file.path(pipeCompOutputDir, "aggregated.rds"))
 
 #res$evaluation
 
-# figure 9
+# figure 10
 
 benchmarkDFLongFmt <- 
     res$evaluation$remove_dead_cells[,c("dataset",
@@ -73,7 +73,7 @@ ggplot(summaryDF[summaryDF$indicator != "nEvents",], aes(x = pipeline, y = value
     geom_boxplot()
 
 
-# figure 10
+# figure 11
 
 summaryDF2 <- reshape(data = summaryDF,
                       idvar = c("dataset","indicator"),
@@ -124,7 +124,7 @@ p <-
     ggplot2::facet_wrap(~ indicator)
 p   
 
-# figure 11.A
+# figure 12.A
 selectedExpName <- "HBVMouse_flowAI"
 selectedSampleFile <- file.path(
     rawDataDir,
@@ -158,7 +158,7 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
 p1+p2
 
 
-# figure 11.B
+# figure 12.B
 selectedExpName <- "HBVMouse_PQC"
 selectedSampleFile <- file.path(
     rawDataDir,
