@@ -4,7 +4,6 @@ require("CytoPipelineUtils")
 # preliminaries: path to raw data files, json inputs, and outputs
 rawDataDir <- "./rawData"
 jsonDir <- "./json"
-flowJoDir <- "./flowJo"
 #outputDir <- tempDir()
 outputDir <- "."
 
@@ -91,4 +90,4 @@ for (p in seq_along(expNames)) {
 
 
 # investigating results through GUI
-CytoPipelineGUI::CytoPipelineCheckApp(dir = outputDir)
+# CytoPipelineGUI::CytoPipelineCheckApp(dir = outputDir)

@@ -24,7 +24,7 @@
       "name": ["time_gate"],
       "FUN": ["applyFlowJoGate"],
       "ARGS": {
-        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "wspFile": ["./rawData/HBV_Chronic_Mouse_Manual_Gating.wsp"],
         "gateName": ["Time"]
           
       }
@@ -33,7 +33,7 @@
       "name": ["single_cells_gate"],
       "FUN": ["applyFlowJoGate"],
       "ARGS": {
-        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "wspFile": ["./rawData/HBV_Chronic_Mouse_Manual_Gating.wsp"],
         "gateName": ["Single Cells"]
           
       }
@@ -42,7 +42,7 @@
       "name": ["live_cells_gate"],
       "FUN": ["applyFlowJoGate"],
       "ARGS": {
-        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "wspFile": ["./rawData/HBV_Chronic_Mouse_Manual_Gating.wsp"],
         "gateName": ["Live Cells"]
           
       }
@@ -51,7 +51,7 @@
       "name": ["lymphocytes_gate"],
       "FUN": ["applyFlowJoGate"],
       "ARGS": {
-        "wspFile": ["./flowJo/HBV Mouse Manual Gating.wsp"],
+        "wspFile": ["./rawData/HBV_Chronic_Mouse_Manual_Gating.wsp"],
         "gateName": ["Lymphocytes"]
           
       }

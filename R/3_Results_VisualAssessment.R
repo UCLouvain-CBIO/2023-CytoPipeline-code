@@ -16,6 +16,8 @@ selectedPipL <- CytoPipeline::buildCytoPipelineFromCache(
     experimentName = selectedExpName
 )
 
+experimentName(selectedPipL) <- "HBVMouse_PQC_error"
+
 CytoPipeline::plotCytoPipelineProcessingQueue(
     x = selectedPipL,
     whichQueue = "pre-processing",
@@ -60,7 +62,7 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
 
 p1+p2
 
-CytoPipelineGUI::CytoPipelineCheckApp()
+#CytoPipelineGUI::CytoPipelineCheckApp()
 
 # USE CASE #3 - Figure 5
 
