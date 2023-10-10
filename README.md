@@ -1,6 +1,7 @@
 # 2023-CytoPipeline-code
 
 [![DOI](https://zenodo.org/badge/664524730.svg)](https://zenodo.org/badge/latestdoi/664524730)
+[![license](https://img.shields.io/badge/license-GPL3.0-blue)](https://opensource.org/licenses/GPL-3.0)
 
 Code and raw data to reproduce the results in the CytoPipeline and CytoPipelineGUI article.
 

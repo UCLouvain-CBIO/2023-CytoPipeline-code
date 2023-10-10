@@ -1,0 +1,24 @@
+2023-CytoPipeline-code Licensing
+============================================
+
+This file attempts to include all licenses that apply within 2023-CytoPipeline-code (this program) source tree, in particular any that are supposed to be exposed to the end user for credit requirements for instance. 
+
+2023-CytoPipeline-code is a software containing raw data and code needed to reproduce the results described in the CytoPipeline & CytoPipelineGUI article.
+
+Copyright (C) <2023> <Université catholique de Louvain (UCLouvain), Belgique>
+Contributors to the development of 2023-CytoPipeline-code:
+- Hauchamps, Philippe (ORCID: 0000-0003-2865-1852, e-mail: philippe.hauchamps@uclouvain.be),
+- Gatto, Laurent 	  (ORCID: 0000-0002-1520-2268, e-mail: laurent.gatto@uclouvain.be).
+
+2023-CytoPipeline-code General
+-----------------------------------------
+
+This program (2023-CytoPipeline-code) is free software: 
+you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details (<http://www.gnu.org/licenses/>).
+
+*************************************************************************
