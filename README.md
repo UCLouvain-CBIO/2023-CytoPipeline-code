@@ -1,5 +1,8 @@
 # 2023-CytoPipeline-code
-Code to reproduce the results in the CytoPipeline and CytoPipelineGUI article.
+
+[![DOI](https://zenodo.org/badge/664524730.svg)](https://zenodo.org/badge/latestdoi/664524730)
+
+Code and raw data to reproduce the results in the CytoPipeline and CytoPipelineGUI article.
 
 User's instruction:
 
