@@ -77,9 +77,13 @@ for (p in seq_along(expNames)) {
     
     saveScaleTransforms <- (expNames[p] == "HBVMouse_FJ")
     
+    message("Proceeding with pipeline experiment ",
+            expNames[p], 
+            " (", p, "/", length(expNames), ") ...")
+    
     try(execute(pipelineList[[p]], 
                 path = outputDir,
-                rmCache = FALSE,
+                rmCache = TRUE,
                 useBiocParallel = useBiocParallel,
                 BPOPTIONS = BiocParallel::bpoptions(
                     package = c("flowCore",
@@ -90,4 +94,5 @@ for (p in seq_along(expNames)) {
 
 
 # investigating results through GUI
+# require(CytoPipelineGUI)
 # CytoPipelineGUI::CytoPipelineCheckApp(dir = outputDir)
