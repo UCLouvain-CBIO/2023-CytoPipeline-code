@@ -119,6 +119,48 @@ p3 <- CytoPipelineGUI:::plotDiffFlowFrame(
 
 p1+p2+p3
 
+# Complementary to USE CASE #3 : Figure S4
+p1 <- CytoPipelineGUI:::plotDiffFlowFrame(
+    experimentNameFrom = selectedExpName1,
+    whichQueueFrom = "pre-processing",
+    sampleFileFrom = selectedSampleFile,
+    flowFrameNameFrom = "remove_doublets_obj",
+    xChannelLabelFrom = "FSC-A : NA",
+    yChannelLabelFrom = "SSC-A : NA",
+    path = outputDir,
+    experimentNameTo = selectedExpName1,
+    whichQueueTo = "pre-processing",
+    sampleFileTo = selectedSampleFile,
+    flowFrameNameTo = "remove_debris_obj",
+    xChannelLabelTo = "FSC-A : NA",
+    yChannelLabelTo = "SSC-A : NA",
+    useAllCells = FALSE,
+    nDisplayCells = 10000,
+    useFixedLinearRange = TRUE,
+    linearRange = c(-100, 262144))
+
+p2 <- CytoPipelineGUI:::plotDiffFlowFrame(
+    experimentNameFrom = selectedExpName2,
+    whichQueueFrom = "pre-processing",
+    sampleFileFrom = selectedSampleFile,
+    flowFrameNameFrom = "remove_doublets_obj",
+    xChannelLabelFrom = "FSC-A : NA",
+    yChannelLabelFrom = "SSC-A : NA",
+    path = outputDir,
+    experimentNameTo = selectedExpName2,
+    whichQueueTo = "pre-processing",
+    sampleFileTo = selectedSampleFile,
+    flowFrameNameTo = "remove_debris_obj",
+    xChannelLabelTo = "FSC-A : NA",
+    yChannelLabelTo = "SSC-A : NA",
+    useAllCells = FALSE,
+    nDisplayCells = 10000,
+    useFixedLinearRange = TRUE,
+    linearRange = c(-100, 262144))
+
+p1+p2
+
+
 # USE CASE #4 - Figure 6
 
 selectedExpName1 <- "HBVMouse_PQC"

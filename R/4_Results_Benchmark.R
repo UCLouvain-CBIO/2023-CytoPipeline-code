@@ -192,7 +192,7 @@ p2 <- CytoPipelineGUI:::plotSelectedFlowFrame(
 p1+p2
 
 
-# Figure S4
+# Figure S5
 
 selectedExpName <- "HBVMouse_PQC"
 selectedSampleFile <- file.path(
@@ -262,7 +262,7 @@ p3 <- CytoPipelineGUI:::plotDiffFlowFrame(
 p1+p2+p3
 
 
-# Figure S5
+# Figure S6
 
 selectedExpName <- "HBVMouse_PQC"
 selectedSampleFile <- file.path(
