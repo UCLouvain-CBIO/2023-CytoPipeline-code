@@ -49,11 +49,12 @@ summaryDF <- melt(benchmarkDFPipeComp,
                                    "recallPeacoQC", "recallFlowAI"))
 
 summaryDF$pipeline <- ifelse(grepl("PeacoQC", summaryDF$indicator_pipe),
-                             "PeacoQC",
-                             "flowAI")
-summaryDF$pipeline <- factor(summaryDF$pipeline, levels = c("PeacoQC", "flowAI"))
+                             "PeacoQC-based",
+                             "flowAI-based")
+summaryDF$pipeline <- factor(summaryDF$pipeline, 
+                             levels = c("PeacoQC-based", "flowAI-based"))
 
-summaryDF$indicator <- ifelse(summaryDF$pipeline == "PeacoQC",
+summaryDF$indicator <- ifelse(summaryDF$pipeline == "PeacoQC-based",
                               gsub("PeacoQC", "", summaryDF$indicator_pipe),
                               gsub("FlowAI", "", summaryDF$indicator_pipe))
 
@@ -85,8 +86,14 @@ colnames(summaryDF2) <- c("dataset", "indicator", "PeacoQC", "flowAI")
 
 useRepel <- TRUE
 
+# combination of increased box.padding,
+# "" labels for non highlighted points,
+# and increased x and y coordinates, as advised in:
+# https://stackoverflow.com/questions/52397363/r-ggplot2-ggrepel-label-a-subset-of-points-while-being-aware-of-all-points
 geom_text_repel_high_overlap <- function(...){
-    geom_text_repel(..., max.overlaps = 100)
+    geom_text_repel(..., max.overlaps = 100, 
+                    box.padding = 1,
+                    min.segment.length = 0)
 }
 
 toDisplay <- c("D93_A05", "D91_C07", "D91_D03")
@@ -116,10 +123,10 @@ p <-
     geom_text_FUN(mapping = aes(label = label), hjust=0.5, vjust=1,
                   size = 2.5) +
     geom_abline(intercept = 0., slope = 1., colour = "blue", linetype = 2) +
-    coord_cartesian(xlim=c(0, 1), ylim=c(0, 1)) + 
+    coord_cartesian(xlim=c(-0.25, 1.25), ylim=c(-0.25, 1.25)) + 
     scale_colour_manual(values = c("false" = normalCol, 
                                    "true" = highlightCol)) +
-    xlab("PeacoQC pipeline") + ylab("flowAI pipeline") + 
+    xlab("PeacoQC-based pipeline") + ylab("flowAI-based pipeline") + 
     theme(legend.position="none") + 
     ggplot2::facet_wrap(~ indicator)
 p   
