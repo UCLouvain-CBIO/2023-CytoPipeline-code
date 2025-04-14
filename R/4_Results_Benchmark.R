@@ -25,6 +25,9 @@ benchmarkDFLongFmt <-
                                         "specificity",
                                         "precision",
                                         "recall")]
+# temporary hack
+benchmarkDFLongFmt$NPV <- benchmarkDFLongFmt$recall
+benchmarkDFLongFmt$recall <- NULL
 
 benchmarkDFLongFmt$qc_meth <- 
     substr(benchmarkDFLongFmt$qc_meth,
@@ -46,7 +49,7 @@ summaryDF <- melt(benchmarkDFPipeComp,
                                    "sensitivityPeacoQC", "sensitivityFlowAI",
                                    "specificityPeacoQC", "specificityFlowAI",
                                    "precisionPeacoQC", "precisionFlowAI",
-                                   "recallPeacoQC", "recallFlowAI"))
+                                   "NPVPeacoQC", "NPVFlowAI"))
 
 summaryDF$pipeline <- ifelse(grepl("PeacoQC", summaryDF$indicator_pipe),
                              "PeacoQC-based",
@@ -61,7 +64,7 @@ summaryDF$indicator <- ifelse(summaryDF$pipeline == "PeacoQC-based",
 summaryDF$indicator <- factor(summaryDF$indicator, levels = c("sensitivity",
                                                               "specificity",
                                                               "precision",
-                                                              "recall",
+                                                              "NPV",
                                                               "nEvents"))
 
 summaryDF$indicator_pipe <- NULL
